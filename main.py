@@ -1,6 +1,6 @@
 import re
 from collections import Counter
-from io_ops import read_text_file, build_output_lines
+from io_ops import read_text_file, build_output_lines, output_text_stats_summary
 
 """
 Entry point (orchestration only).
@@ -88,22 +88,7 @@ def main() -> None:
         "most_common_line": most_common_line,
     }
 
-
-    output_lines = build_output_lines(text_stats_dict)
-    
-    # --- Print to console ---
-    line_index = 0
-    while line_index < len(output_lines):
-        print(output_lines[line_index])
-        line_index += 1
-
-    # --- Write to output.txt ---
-    with open("output.txt", "w", encoding="utf-8") as file_out:
-        line_index = 0
-        while line_index < len(output_lines):
-            file_out.write(output_lines[line_index] + ("\n" if line_index < len(output_lines) - 1 else ""))
-            line_index += 1
-
+    output_text_stats_summary(text_stats_dict)
 
 if __name__ == "__main__":
     main()

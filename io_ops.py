@@ -33,3 +33,19 @@ def build_output_lines(text_stats_dict):
         f"Average word length: {text_stats_dict["average_word_length_str"]}",
         text_stats_dict["most_common_line"],
     ]
+
+def output_text_stats_summary(text_stats_dict):
+    output_lines = build_output_lines(text_stats_dict)
+    
+    # --- Print to console ---
+    line_index = 0
+    while line_index < len(output_lines):
+        print(output_lines[line_index])
+        line_index += 1
+
+    # --- Write to output.txt ---
+    with open("output.txt", "w", encoding="utf-8") as file_out:
+        line_index = 0
+        while line_index < len(output_lines):
+            file_out.write(output_lines[line_index] + ("\n" if line_index < len(output_lines) - 1 else ""))
+            line_index += 1

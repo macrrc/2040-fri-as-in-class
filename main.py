@@ -1,6 +1,6 @@
 import re
 from collections import Counter
-from io_ops import read_text_file
+from io_ops import read_text_file, build_output_lines
 
 """
 Entry point (orchestration only).
@@ -79,16 +79,18 @@ def main() -> None:
             most_common_line = f"Most common word(s): {', '.join(most_frequent_words)} ({highest_frequency})"
 
     # --- Build the six required lines in the exact order/format ---
-    output_lines = [
-        f"Word count: {word_count}",
-        f"Unique words: {unique_word_count}",
-        f"Characters (with spaces): {characters_with_spaces}",
-        f"Characters (no spaces): {characters_no_spaces}",
-        f"Average word length: {average_word_length_str}",
-        most_common_line,
-    ]
+    text_stats_dict = {
+        "word_count": word_count,
+        "unique_word_count": unique_word_count,
+        "characters_with_spaces": characters_with_spaces,
+        "characters_no_spaces": characters_no_spaces,
+        "average_word_length_str": average_word_length_str,
+        "most_common_line": most_common_line,
+    }
 
 
+    output_lines = build_output_lines(text_stats_dict)
+    
     # --- Print to console ---
     line_index = 0
     while line_index < len(output_lines):

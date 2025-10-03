@@ -23,3 +23,13 @@ Note:
 def read_text_file(file_path):
     with open(file_path, "r", encoding="utf-8") as file_in:
         return file_in.read()
+    
+def build_output_lines(text_stats_dict):
+    return [
+        f"Word count: {text_stats_dict["word_count"]}",
+        f"Unique words: {text_stats_dict["unique_word_count"]}",
+        f"Characters (with spaces): {text_stats_dict["characters_with_spaces"]}",
+        f"Characters (no spaces): {text_stats_dict["characters_no_spaces"]}",
+        f"Average word length: {text_stats_dict["average_word_length_str"]}",
+        text_stats_dict["most_common_line"],
+    ]

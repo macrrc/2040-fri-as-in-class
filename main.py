@@ -1,5 +1,6 @@
 import re
 from collections import Counter
+from io_ops import read_text_file
 
 """
 Entry point (orchestration only).
@@ -27,8 +28,7 @@ def main() -> None:
 
 
     # --- Read the raw file text (assumes input.txt exists in the same folder) ---
-    with open("input.txt", "r", encoding="utf-8") as file_in:
-        text_content = file_in.read()
+    text_content = read_text_file("input.txt")
 
     # --- Character counts ---
     characters_with_spaces = len(text_content)
